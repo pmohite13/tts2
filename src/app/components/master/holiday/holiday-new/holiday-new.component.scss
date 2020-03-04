@@ -1,0 +1,23 @@
+.gridheader {
+  justify-content: space-between;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-calendar-body-cell-content {
+  color: black !important;
+  border-color: transparent !important;
+  font-weight: bold !important;
+}
+
+.mat-calendar-table-header th {
+  color: black !important;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

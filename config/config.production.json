@@ -1,0 +1,7 @@
+{
+    "databaseConfig": {
+        "host": "https://webridgeonline.herokuapp.com/",
+        "database": "customermanager"
+    },
+    "secret": "supersecret"    
+}

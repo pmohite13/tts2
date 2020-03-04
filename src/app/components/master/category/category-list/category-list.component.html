@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-header class="mb20">
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+    <button
+      style="margin-right:5px;"
+      mat-raised-button
+      (click)="createCategory()"
+      matTooltip="Create new Category"
+    >
+      Add New +
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="example-container mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="example-container mat-elevation-z8"
+      >
+        <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Code Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+          <td mat-cell *matCellDef="let category; let i = index">
+            {{ category.CAT }}
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let category">
+            {{ category.CATAGORYNAME }}
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+
+        <ng-container matColumnDef="displayLink">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let category">
+            <a style="cursor: pointer;" (click)="editCategoryMaster(category)">
+              <i class="material-icons">
+                edit
+              </i>
+            </a>
+            <a style="cursor: pointer;" (click)="openPrompt(category)">
+              <i class="material-icons">
+                delete
+              </i>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns; let i = index"
+        ></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

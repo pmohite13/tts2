@@ -1,0 +1,184 @@
+<mat-card>
+  <mat-card-header class="mb20 gridheader">
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="holidayFormGroup" class="container">
+      <div class="row mt20">
+        <div class="col-md-6">
+          <!-- Holiday Date -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="holidayFormGroup.controls.hDate"
+              [matDatepicker]="hDate"
+              [min]="minDate"
+              [max]="maxDate"
+              placeholder="Holiday Date*"
+            />
+
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="hDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #hDate></mat-datepicker>
+            <mat-error
+              *ngIf="holidayFormGroup.controls.hDate.hasError('required')"
+            >
+              Holiday date is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Holiday -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="holidayFormGroup.controls.holiday"
+              placeholder="Holiday"
+            />
+            <mat-error
+              *ngIf="holidayFormGroup.controls.holiday.hasError('required')"
+            >
+              Holiday is
+              <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="holidayFormGroup.controls.holiday.hasError('maxlength')"
+            >
+              Holiday is
+              <strong>20 character max</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Company Code -->
+          <mat-form-field>
+            <mat-label>Company Code</mat-label>
+            <mat-select
+              [formControl]="holidayFormGroup.controls.companyCode"
+              multiple
+            >
+              <mat-select-trigger>
+                {{
+                  holidayFormGroup.controls.companyCode.value
+                    ? holidayFormGroup.controls.companyCode.value[0].COMPANYCODE
+                    : ""
+                }}
+                <span
+                  *ngIf="
+                    holidayFormGroup.controls.companyCode.value?.length > 1
+                  "
+                  class="example-additional-selection"
+                >
+                  (+{{
+                    holidayFormGroup.controls.companyCode.value.length - 1
+                  }}
+                  {{
+                    holidayFormGroup.controls.companyCode.value?.length === 2
+                      ? "other"
+                      : "others"
+                  }})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let company of companies" [value]="company">{{
+                company.COMPANYCODE
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <!-- Department Code -->
+          <mat-form-field>
+            <mat-label>Department Code</mat-label>
+            <mat-select
+              [formControl]="holidayFormGroup.controls.departmentCode"
+              multiple
+            >
+              <mat-select-trigger>
+                {{
+                  holidayFormGroup.controls.departmentCode.value
+                    ? holidayFormGroup.controls.departmentCode.value[0]
+                        .DEPARTMENTCODE
+                    : ""
+                }}
+                <span
+                  *ngIf="
+                    holidayFormGroup.controls.departmentCode.value?.length > 1
+                  "
+                  class="example-additional-selection"
+                >
+                  (+{{
+                    holidayFormGroup.controls.departmentCode.value.length - 1
+                  }}
+                  {{
+                    holidayFormGroup.controls.departmentCode.value?.length === 2
+                      ? "other"
+                      : "others"
+                  }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let department of departments"
+                [value]="department"
+                >{{ department.DEPARTMENTCODE }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <!-- Adjustment Date -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="holidayFormGroup.controls.adjustmentHoliday"
+              [matDatepicker]="adjustmentHoliday"
+              [min]="minDate"
+              [max]="maxDate"
+              placeholder="Adjustment Date*"
+            />
+
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="adjustmentHoliday"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #adjustmentHoliday></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt50">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  #btnSave
+                  [color]="btnSaveColor"
+                  (click)="submit()"
+                  [disabled]="!holidayFormGroup.valid"
+                >
+                  Finish
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="gotoHolidayList()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </form>
+    <mat-error *ngIf="showSummaryErrors">
+      {{ summaryErrors }}
+    </mat-error>
+  </mat-card-content>
+</mat-card>

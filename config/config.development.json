@@ -1,0 +1,7 @@
+{
+  "databaseConfig": {
+    "host": "localhost",
+    "database": "bcsdb"
+  },
+  "secret": "supersecret"
+}

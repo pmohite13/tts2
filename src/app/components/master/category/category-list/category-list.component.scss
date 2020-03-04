@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+mat-card-content {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  color: #3f51b5;
+  font-size: 14px;
+}
+
+.mat-card-content,
+.mat-card-header .mat-card-title,
+.mat-card-subtitle {
+  font-size: 20px;
+}
+
+.mat-table-action-column {
+  font-size: 20px;
+}

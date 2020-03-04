@@ -1,0 +1,162 @@
+<mat-card>
+  <mat-card-header class="mb20 gridheader">
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="companyFormGroup" class="container">
+      <div class="row mt20">
+        <div class="col-md-6">
+          <!-- Company Code -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.companyCode"
+              placeholder="Code"
+            />
+            <mat-error
+              *ngIf="companyFormGroup.controls.companyCode.hasError('required')"
+            >
+              Compnay code is
+              <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                companyFormGroup.controls.companyCode.hasError('maxlength')
+              "
+            >
+              Compnay code is
+              <strong>3 char long max</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Company Name -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.companyName"
+              placeholder="Name"
+            />
+            <mat-error
+              *ngIf="companyFormGroup.controls.companyName.hasError('required')"
+            >
+              Compnay name is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Company Address -->
+          <mat-form-field>
+            <textarea
+              matInput
+              [formControl]="companyFormGroup.controls.companyAddress"
+              placeholder="Address"
+            ></textarea>
+          </mat-form-field>
+
+          <!-- Company Short Name -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.shortName"
+              placeholder="Short Name"
+            />
+            <mat-error
+              *ngIf="companyFormGroup.controls.shortName.hasError('required')"
+            >
+              Short name is
+              <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="companyFormGroup.controls.shortName.hasError('maxlength')"
+            >
+              Short name is
+              <strong>10 character max</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <!-- Company Pan Number -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.pannum"
+              placeholder="PAN"
+            />
+            <mat-error
+              *ngIf="companyFormGroup.controls.pannum.hasError('required')"
+            >
+              PAN is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Company Tan Number -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.tanNumber"
+              placeholder="TAN"
+            />
+            <mat-error
+              *ngIf="companyFormGroup.controls.tanNumber.hasError('required')"
+            >
+              TAN is
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Company pf Number -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.pfno"
+              placeholder="PF Number"
+            />
+          </mat-form-field>
+
+          <!-- Company lcNumber -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyFormGroup.controls.lcno"
+              placeholder="LC Number"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt50">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  #btnSave
+                  [color]="btnSaveColor"
+                  (click)="submit()"
+                  [disabled]="!companyFormGroup.valid"
+                >
+                  Finish
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="gotoCompanyList()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
