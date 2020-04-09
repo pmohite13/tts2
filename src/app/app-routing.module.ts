@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: "holiday", component: HolidayNewComponent },
   { path: "shiftlist", component: ShiftListComponent },
   { path: "shift", component: ShiftNewComponent },
-  { path: "shiftedit/:shift", component: ShiftEditComponent },
+  { path: "shiftedit/:shiftCode", component: ShiftEditComponent },
   { path: "", component: HomeComponent }
 ];
 

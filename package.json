@@ -106,6 +106,8 @@
     "morgan": "~1.9.0",
     "msnodesqlv8": "^0.6.12",
     "mssql": "^5.0.1",
+    "ngx-material-timepicker": "5.3.0",
+    "popper.js": "^1.16.1",
     "serve-favicon": "~2.5.0"
   }
 }

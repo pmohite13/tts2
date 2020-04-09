@@ -1,3 +1,166 @@
-<p>
-  shift-list works!
-</p>
+<mat-card>
+  <mat-card-header class="mb20">
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+    <button
+      style="margin-right:5px;"
+      mat-raised-button
+      (click)="createShift()"
+      matTooltip="Create new Shift"
+    >
+      Add New +
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="example-container mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="example-container mat-elevation-z8"
+      >
+        <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Code Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+          <td mat-cell *matCellDef="let shift; let i = index">
+            {{ shift.SHIFT }}
+          </td>
+        </ng-container>
+
+        <!-- Start Time Column -->
+        <ng-container matColumnDef="startTime">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.STARTTIME | date: "H:mm" }}
+          </td>
+        </ng-container>
+
+        <!-- End Time Column -->
+        <ng-container matColumnDef="endTime">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.ENDTIME | date: "H:mm" }}
+          </td>
+        </ng-container>
+
+        <!-- Lunch Time Column -->
+        <ng-container matColumnDef="lunchTime">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Lunch Time</th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.LUNCHTIME | date: "H:mm" }}
+          </td>
+        </ng-container>
+
+        <!-- lunchDuration Column -->
+        <ng-container matColumnDef="lunchDuration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Lunch Duration
+          </th>
+          <td mat-cell *matCellDef="let shift; let i = index">
+            {{ shift.LUNCHDURATION }}
+          </td>
+        </ng-container>
+
+        <!-- lunchEndTime Column -->
+        <ng-container matColumnDef="lunchEndTime">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Lunch EndTime
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.LUNCHENDTIME | date: "H:mm" }}
+          </td>
+        </ng-container>
+
+        <!-- otStartAfter Column -->
+        <ng-container matColumnDef="otStartAfter">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            OT StartAfter
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.OTSTARTAFTER }}
+          </td>
+        </ng-container>
+
+        <!-- otDeductHrs Column -->
+        <ng-container matColumnDef="otDeductHrs">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            OT DeductHrs
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.OTDEDUCTHRS }}
+          </td>
+        </ng-container>
+
+        <!-- lunchDeduction Column -->
+        <ng-container matColumnDef="lunchDeduction">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Lunch Deduction
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.LUNCHDEDUCTION }}
+          </td>
+        </ng-container>
+
+        <!-- shiftPosition Column -->
+        <ng-container matColumnDef="shiftPosition">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Shift Position
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.SHIFTPOSITION }}
+          </td>
+        </ng-container>
+
+        <!-- shiftDuration Column -->
+        <ng-container matColumnDef="shiftDuration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Shift Duration
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.SHIFTDURATION }}
+          </td>
+        </ng-container>
+
+        <!-- otDeductAfter Column -->
+        <ng-container matColumnDef="otDeductAfter">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            OT DeductAfter
+          </th>
+          <td mat-cell *matCellDef="let shift">
+            {{ shift.OTDEDUCTAFTER }}
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="displayLink">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let shift">
+            <a style="cursor: pointer;" (click)="editshiftMaster(shift)">
+              <i class="material-icons">
+                edit
+              </i>
+            </a>
+            <a style="cursor: pointer;" (click)="openPrompt(shift)">
+              <i class="material-icons">
+                delete
+              </i>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns; let i = index"
+        ></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

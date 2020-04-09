@@ -87,3 +87,25 @@ export interface IHolidayResponse {
   status: boolean;
   error: string;
 }
+
+export interface IShift {
+  shift: string;
+  startTime: Date;
+  endTime: Date;
+  lunchTime: Date;
+  lunchDuration: number;
+  lunchEndTime: Date;
+  otStartAfter: number;
+  otDeductHrs: number;
+  lunchDeduction: number;
+  shiftPosition: string;
+  shiftDuration: number;
+  otDeductAfter: number;
+  chkNightShiftAfter12: string;
+}
+
+export interface IShiftResponse {
+  shift: IShift;
+  status: boolean;
+  error: string;
+}

@@ -41,13 +41,13 @@
 
 var dbConfig = {
   user: "sa123",
-  password: "$Uciny@12345",
+  password: "$Uciny#12345",
   server: "DESKTOP-2948NIE",
   database: "bcsdb",
   port: 1433,
   options: {
-    instanceName: "SQLEXPRESS"
-  }
+    instanceName: "SQLEXPRESS",
+  },
 };
 
 module.exports = dbConfig;

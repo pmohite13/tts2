@@ -1,3 +1,206 @@
-<p>
-  shift-new works!
-</p>
+<mat-card>
+  <mat-card-header class="mb20 gridheader">
+    <mat-card-subtitle>{{ title }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="shiftFormGroup" class="container">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Shift Setup">
+          <div class="row mt20">
+            <div class="col-md-12">
+              <!-- Shift Code -->
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [formControl]="shiftFormGroup.controls.shift"
+                  placeholder="Code"
+                />
+                <mat-error
+                  *ngIf="shiftFormGroup.controls.shift.hasError('required')"
+                >
+                  Shift code is
+                  <strong>required</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="shiftFormGroup.controls.shift.hasError('maxlength')"
+                >
+                  Shift code is
+                  <strong>3 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <!-- Start Time -->
+              <!-- <div class="timebox">
+                <input
+                  [formControl]="shiftFormGroup.controls.startTime"
+                  placeholder="Start Time"
+                  [ngxTimepicker]="startTime"
+                  (registerOnChange)="startTimeChanged()"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker #startTime></ngx-material-timepicker>
+              </div> -->
+
+              <!-- End Time -->
+              <!-- <div class="timebox mt20">
+                <input
+                  [formControl]="shiftFormGroup.controls.endTime"
+                  placeholder="End Time"
+                  [ngxTimepicker]="endTime"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker #endTime></ngx-material-timepicker>
+              </div> -->
+
+              <!-- Shift Duration -->
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [formControl]="shiftFormGroup.controls.shiftDuration"
+                  placeholder="Shift Hours"
+                  readonly
+                  [disabled]="true"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!-- Lunch Start Time -->
+              <!-- <div class="timebox">
+                <input
+                  [formControl]="shiftFormGroup.controls.lunchTime"
+                  placeholder="Lunch Start Time"
+                  [ngxTimepicker]="lunchTime"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker #lunchTime></ngx-material-timepicker>
+              </div> -->
+
+              <!--Lunch End Time -->
+              <!-- <div class="timebox mt20">
+                <input
+                  [formControl]="shiftFormGroup.controls.lunchEndTime"
+                  placeholder="Lunch End Time"
+                  [ngxTimepicker]="lunchEndTime"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker
+                  #lunchEndTime
+                ></ngx-material-timepicker>
+              </div> -->
+
+              <!-- Lunch Duration -->
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [formControl]="shiftFormGroup.controls.lunchDuration"
+                  placeholder="Lunch Hours"
+                  readonly
+                  [disabled]="true"
+                />
+              </mat-form-field>
+            </div></div
+        ></mat-tab>
+        <mat-tab label="Advanced Setup">
+          <div class="row mt20">
+            <div class="col-md-6">
+              <!-- Overtime Deduct After -->
+              <!-- <div class="timebox">
+                <input
+                  [formControl]="shiftFormGroup.controls.otDeductAfter"
+                  placeholder="Overtime Deduct After"
+                  [ngxTimepicker]="otDeductAfter"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker
+                  #otDeductAfter
+                ></ngx-material-timepicker>
+              </div> -->
+
+              <!-- Overtime Start After -->
+              <!-- <div class="timebox mt20">
+                <input
+                  [formControl]="shiftFormGroup.controls.otStartAfter"
+                  placeholder="Overtime Start After"
+                  [ngxTimepicker]="otStartAfter"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker
+                  #otStartAfter
+                ></ngx-material-timepicker>
+              </div> -->
+            </div>
+            <div class="col-md-6">
+              <!-- Overtime Deducation -->
+              <!-- <div class="timebox">
+                <input
+                  [formControl]="shiftFormGroup.controls.otDeductHrs"
+                  placeholder="Overtime Deducation"
+                  [ngxTimepicker]="otDeductHrs"
+                  [format]="24"
+                  readonly
+                />
+                <ngx-material-timepicker #otDeductHrs></ngx-material-timepicker>
+              </div> -->
+
+              <!--Shift Position -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Shift Position"
+                  [formControl]="shiftFormGroup.controls.shiftPosition"
+                >
+                  <mat-option *ngFor="let pos of shiftPositions" [value]="pos">
+                    {{ pos }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <div class="row mt50">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  #btnSave
+                  [color]="btnSaveColor"
+                  (click)="submit()"
+                  [disabled]="!shiftFormGroup.valid"
+                >
+                  Finish
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="text-center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="gotoShiftList()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </form>
+    <mat-error *ngIf="showSummaryErrors">
+      {{ summaryErrors }}
+    </mat-error>
+  </mat-card-content>
+</mat-card>

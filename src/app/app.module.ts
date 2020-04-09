@@ -45,9 +45,10 @@ import { CategoryEditComponent } from "./components/master/category/category-edi
 import { HolidayListComponent } from "./components/master/holiday/holiday-list/holiday-list.component";
 import { HolidayNewComponent } from "./components/master/holiday/holiday-new/holiday-new.component";
 import { MAT_DATE_LOCALE } from "@angular/material";
-import { ShiftListComponent } from './components/master/shift/shift-list/shift-list.component';
-import { ShiftNewComponent } from './components/master/shift/shift-new/shift-new.component';
-import { ShiftEditComponent } from './components/master/shift/shift-edit/shift-edit.component';
+import { ShiftListComponent } from "./components/master/shift/shift-list/shift-list.component";
+import { ShiftNewComponent } from "./components/master/shift/shift-new/shift-new.component";
+import { ShiftEditComponent } from "./components/master/shift/shift-edit/shift-edit.component";
+// import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -79,7 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HolidayNewComponent,
     ShiftListComponent,
     ShiftNewComponent,
-    ShiftEditComponent
+    ShiftEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,12 +92,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     BrowserAnimationsModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ElectronService,
@@ -104,8 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentService,
     SectionService,
     { provide: BrowserXhr, useClass: CustExtBrowserXhr },
-    { provide: MAT_DATE_LOCALE, useValue: "en-GB" }
+    { provide: MAT_DATE_LOCALE, useValue: "en-GB" },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
