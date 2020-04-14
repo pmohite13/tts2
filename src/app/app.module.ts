@@ -48,7 +48,7 @@ import { MAT_DATE_LOCALE } from "@angular/material";
 import { ShiftListComponent } from "./components/master/shift/shift-list/shift-list.component";
 import { ShiftNewComponent } from "./components/master/shift/shift-new/shift-new.component";
 import { ShiftEditComponent } from "./components/master/shift/shift-edit/shift-edit.component";
-// import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { TextMaskModule } from "angular2-text-mask";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -63,7 +63,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CompanyComponent,
     CompanyListComponent,
     CompanyEditComponent,
-
     DepartmentNewComponent,
     DepartmentEditComponent,
     DepartmentListComponent,
@@ -88,6 +87,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    TextMaskModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

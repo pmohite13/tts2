@@ -32,29 +32,27 @@
 
             <div class="col-md-6">
               <!-- Start Time -->
-              <!-- <div class="timebox">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.startTime"
                   placeholder="Start Time"
-                  [ngxTimepicker]="startTime"
-                  (registerOnChange)="startTimeChanged()"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker #startTime></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!-- End Time -->
-              <!-- <div class="timebox mt20">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.endTime"
                   placeholder="End Time"
-                  [ngxTimepicker]="endTime"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  (blur)="calculateShiftHours()"
+                  type="text"
                 />
-                <ngx-material-timepicker #endTime></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!-- Shift Duration -->
               <mat-form-field appearance="outline">
@@ -69,30 +67,26 @@
             </div>
             <div class="col-md-6">
               <!-- Lunch Start Time -->
-              <!-- <div class="timebox">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.lunchTime"
                   placeholder="Lunch Start Time"
-                  [ngxTimepicker]="lunchTime"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker #lunchTime></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!--Lunch End Time -->
-              <!-- <div class="timebox mt20">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.lunchEndTime"
                   placeholder="Lunch End Time"
-                  [ngxTimepicker]="lunchEndTime"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker
-                  #lunchEndTime
-                ></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!-- Lunch Duration -->
               <mat-form-field appearance="outline">
@@ -110,45 +104,38 @@
           <div class="row mt20">
             <div class="col-md-6">
               <!-- Overtime Deduct After -->
-              <!-- <div class="timebox">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.otDeductAfter"
                   placeholder="Overtime Deduct After"
-                  [ngxTimepicker]="otDeductAfter"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker
-                  #otDeductAfter
-                ></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!-- Overtime Start After -->
-              <!-- <div class="timebox mt20">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.otStartAfter"
                   placeholder="Overtime Start After"
-                  [ngxTimepicker]="otStartAfter"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker
-                  #otStartAfter
-                ></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
             </div>
             <div class="col-md-6">
               <!-- Overtime Deducation -->
-              <!-- <div class="timebox">
+              <mat-form-field appearance="outline">
                 <input
+                  matInput
                   [formControl]="shiftFormGroup.controls.otDeductHrs"
                   placeholder="Overtime Deducation"
-                  [ngxTimepicker]="otDeductHrs"
-                  [format]="24"
-                  readonly
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  type="text"
                 />
-                <ngx-material-timepicker #otDeductHrs></ngx-material-timepicker>
-              </div> -->
+              </mat-form-field>
 
               <!--Shift Position -->
               <mat-form-field>

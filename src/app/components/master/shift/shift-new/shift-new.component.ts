@@ -8,7 +8,7 @@ import { DUPLICATE_INSERT } from "../../../../shared/constants";
 @Component({
   selector: "app-shift-new",
   templateUrl: "./shift-new.component.html",
-  styleUrls: ["./shift-new.component.scss"]
+  styleUrls: ["./shift-new.component.scss"],
 })
 export class ShiftNewComponent implements OnInit {
   title: string;
@@ -16,6 +16,7 @@ export class ShiftNewComponent implements OnInit {
   showSummaryErrors: boolean;
   summaryErrors: string;
   shiftPositions: string[];
+  public maskTime = [/[0-2]/, /\d/, ":", /[0-5]/, /\d/];
 
   @Output() valueChange = new EventEmitter();
   constructor(
@@ -38,7 +39,7 @@ export class ShiftNewComponent implements OnInit {
     this.shiftFormGroup = this.formBuilder.group({
       shift: [
         "",
-        [Validators.required, Validators.minLength(3), Validators.maxLength(3)]
+        [Validators.required, Validators.minLength(3), Validators.maxLength(3)],
       ],
       startTime: [""],
       endTime: [""],
@@ -50,12 +51,17 @@ export class ShiftNewComponent implements OnInit {
       lunchDeduction: [""],
       shiftPosition: [""],
       shiftDuration: [""],
-      otDeductAfter: [""]
+      otDeductAfter: [""],
     });
   }
 
   gotoShiftList() {
     this.router.navigateByUrl("shiftlist");
+  }
+
+  calculateShiftHours() {
+    debugger;
+    this.shiftFormGroup;
   }
 
   submit() {
@@ -88,7 +94,7 @@ export class ShiftNewComponent implements OnInit {
           this.router.navigate(["shiftlist"]);
         }
       },
-      err => {
+      (err) => {
         console.log(err);
       }
     );

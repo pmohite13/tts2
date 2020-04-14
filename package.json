@@ -85,6 +85,7 @@
     "@angular/animations": "^7.2.7",
     "@angular/cdk": "^7.3.3",
     "@angular/material": "^7.3.3",
+    "angular2-text-mask": "^9.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.4.1",
