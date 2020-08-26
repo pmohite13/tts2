@@ -11,7 +11,7 @@ import { CompanyListComponent } from "./components/master/company/company-list/c
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   title: string;
@@ -72,15 +72,20 @@ export class AppComponent {
         this.router.navigateByUrl("shiftlist");
       });
     });
+    this.electronService.ipcRenderer.on("open-employee", (event, arg) => {
+      this.ngZone.run(() => {
+        this.router.navigateByUrl("employeelist");
+      });
+    });
   }
 
   openCompanyDialog() {
     // this.router.navigate(['/company']);
     // const dialogRef = this.dialog.open(CompanyComponent, { disableClose: true });
     const dialogRef = this.dialog.open(CompanyListComponent, {
-      disableClose: true
+      disableClose: true,
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

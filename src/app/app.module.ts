@@ -49,6 +49,14 @@ import { ShiftListComponent } from "./components/master/shift/shift-list/shift-l
 import { ShiftNewComponent } from "./components/master/shift/shift-new/shift-new.component";
 import { ShiftEditComponent } from "./components/master/shift/shift-edit/shift-edit.component";
 import { TextMaskModule } from "angular2-text-mask";
+import { EmployeeListComponent } from './components/master/employee/employee-list/employee-list.component';
+import { EmployeeNewComponent } from './components/master/employee/employee-new/employee-new.component';
+import { EmployeeEditComponent } from './components/master/employee/employee-edit/employee-edit.component';
+import { ShiftService } from "./core/services/shift.service";
+import { CategoryService } from "./core/services/categoryservice";
+import { GradeService } from "./core/services/gradeservice";
+import { HolidayService } from "./core/services/holiday.service";
+import { EmployeeService } from "./core/services/employee.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -80,6 +88,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ShiftListComponent,
     ShiftNewComponent,
     ShiftEditComponent,
+    EmployeeListComponent,
+    EmployeeNewComponent,
+    EmployeeEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +114,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ElectronService,
     DataService,
     DepartmentService,
+    CategoryService,
+    GradeService,
+    HolidayService,
+    SectionService,
+    ShiftService,  
+    EmployeeService,  
     SectionService,
     { provide: BrowserXhr, useClass: CustExtBrowserXhr },
     { provide: MAT_DATE_LOCALE, useValue: "en-GB" },

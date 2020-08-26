@@ -109,3 +109,107 @@ export interface IShiftResponse {
   status: boolean;
   error: string;
 }
+
+export interface IEmployee {
+  ACTIVE: string;
+  PAYCODE: string;
+  EMPNAME: string;
+  GUARDIANNAME: string;
+  DateOFBIRTH: Date;
+  DateOFJOIN: Date;
+  PRESENTCARDNO: string;
+  COMPANYCODE: string;
+  DEPARTMENTCODE: string;
+  CAT: string;
+  SEX: string;
+  ISMARRIED: string;
+  BUS: string;
+  QUALIFICATION: string;
+  EXPERIENCE: string;
+  DESIGNATION: string;
+  ADDRESS1: string;
+  PINCODE1: string;
+  TELEPHONE1: string;
+  E_MAIL1: string;
+  ADDRESS2: string;
+  PINCODE2: string;
+  TELEPHONE2: string;
+  BLOODGROUP: string;
+  EMPPHOTO: string;
+  EMPSIGNATURE: string;
+  DivisionCode: string;
+  GradeCode: string;
+  Leavingdate: string;
+  LeavingReason: string;
+  VehicleNo: string;
+  PFNO: string;
+  PF_NO: number;
+  ESINO: string;
+  AUTHORISEDMACHINE: string;
+  EMPTYPE: string;
+  BankAcc: string;
+  DATEOFRETIREMENT: Date;
+  bankcode: string;
+}
+
+export interface IEmployeeShift {
+  ACTIVE: string;
+  PAYCODE: string;
+  EMPNAME: string;
+  DateOFBIRTH: Date;
+  DateOFJOIN: Date;
+  CARDNO: string;
+  SHIFT: string;
+  SHIFTTYPE: string;
+  SHIFTPATTERN: string;
+  SHIFTREMAINDAYS: number;
+  LASTSHIFTPERFORMED: string;
+  INONLY: string;
+  ISPUNCHALL: string;
+  ISTIMELOSSALLOWED: string;
+  ALTERNATE_OFF_DAYS: string;
+  CDAYS: number;
+  ISROUNDTHECLOCKWORK: string;
+  ISOT: string;
+  OTRATE: string;
+  FIRSTOFFDAY: string;
+  SECONDOFFTYPE: string;
+  HALFDAYSHIFT: string;
+  SECONDOFFDAY: string;
+  PERMISLATEARRIVAL: number;
+  PERMISEARLYDEPRT: number;
+  ISAUTOSHIFT: string;
+  ISOUTWORK: string;
+  MAXDAYMIN: number;
+  ISOS: string;
+  AUTH_SHIFTS: string;
+  TIME: number;
+  SHORT: number;
+  HALF: number;
+  ISHALFDAY: string;
+  ISSHORT: string;
+  TWO: string;
+  OW: string;
+  LateArrvMark: string;
+  NolateArrv: string;
+  LateArriv: string;
+  EarlyDeptMark: string;
+  NoEarlyDept: string;
+  EarlyDept: string;
+  AllwSecondShit: string;
+  SecondShiftDay: string;
+  SecondShift: string;
+  AlternateShiftDays: string;
+}
+
+export interface IEmployeeResponse {
+  employee: IEmployee;
+  status: boolean;
+  error: string;
+}
+
+export interface IEmployeeShiftResponse {
+  employeeShift: IEmployeeShift;
+  status: boolean;
+  error: string;
+}

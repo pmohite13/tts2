@@ -21,6 +21,9 @@ import { HolidayNewComponent } from "./components/master/holiday/holiday-new/hol
 import { ShiftListComponent } from "./components/master/shift/shift-list/shift-list.component";
 import { ShiftNewComponent } from "./components/master/shift/shift-new/shift-new.component";
 import { ShiftEditComponent } from "./components/master/shift/shift-edit/shift-edit.component";
+import { EmployeeListComponent } from "./components/master/employee/employee-list/employee-list.component";
+import { EmployeeNewComponent } from "./components/master/employee/employee-new/employee-new.component";
+import { EmployeeEditComponent } from "./components/master/employee/employee-edit/employee-edit.component";
 
 const routes: Routes = [
   { path: "companylist", component: CompanyListComponent },
@@ -46,6 +49,9 @@ const routes: Routes = [
   { path: "shiftlist", component: ShiftListComponent },
   { path: "shift", component: ShiftNewComponent },
   { path: "shiftedit/:shiftCode", component: ShiftEditComponent },
+  { path: "employeelist", component: EmployeeListComponent },
+  { path: "employee", component: EmployeeNewComponent },
+  { path: "employeeedit/:employeeCode", component: EmployeeEditComponent },
   { path: "", component: HomeComponent }
 ];
 
@@ -53,4 +59,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

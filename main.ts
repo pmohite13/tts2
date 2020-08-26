@@ -4,7 +4,7 @@ import * as url from "url";
 
 let win, serve;
 const args = process.argv.slice(1);
-serve = args.some(val => val === "--serve");
+serve = args.some((val) => val === "--serve");
 
 let appmenu = require("./menu.js");
 let menu = appmenu.ApplicationMenu;
@@ -16,6 +16,7 @@ function registerShortCuts() {
   });
 }
 function createWindow() {
+  debugger;
   registerShortCuts();
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -27,8 +28,8 @@ function createWindow() {
     width: size.width,
     height: size.height,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
 
   menu.items[0]["submenu"].items[0].click = () => {
@@ -56,6 +57,9 @@ function createWindow() {
   menu.items[0]["submenu"].items[12].click = () => {
     win.webContents.send("open-shift", "shift");
   };
+  menu.items[0]["submenu"].items[14].click = () => {
+    win.webContents.send("open-employee", "employee");
+  };
 
   menu.items[1].click = () => {
     app.quit();
@@ -63,7 +67,7 @@ function createWindow() {
 
   if (serve) {
     require("electron-reload")(__dirname, {
-      electron: require(`${__dirname}/node_modules/electron`)
+      electron: require(`${__dirname}/node_modules/electron`),
     });
     win.loadURL("http://localhost:4200");
   } else {
@@ -71,7 +75,7 @@ function createWindow() {
       url.format({
         pathname: path.join(__dirname, "dist/index.html"),
         protocol: "file:",
-        slashes: true
+        slashes: true,
       })
     );
   }

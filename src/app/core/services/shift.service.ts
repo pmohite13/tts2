@@ -43,13 +43,13 @@ export class ShiftService {
     );
   }
 
-  updateShiftMaster(shift: IShift): Observable<IShift> {
+  updateShiftMaster(shift: IShift): Observable<IShiftResponse> {
     return this.http
       .put<IShiftResponse>(this.baseShiftUrl + "/" + shift.shift, shift)
       .pipe(
         map(data => {
           console.log("update shift status: " + data.status);
-          return data.shift;
+          return data;
         }),
         catchError(this.handleError)
       );

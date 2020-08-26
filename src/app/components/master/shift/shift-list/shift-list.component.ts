@@ -28,7 +28,6 @@ export class ShiftListComponent implements OnInit {
     "lunchEndTime",
     "otStartAfter",
     "otDeductHrs",
-    "lunchDeduction",
     "shiftPosition",
     "shiftDuration",
     "otDeductAfter",
@@ -43,7 +42,7 @@ export class ShiftListComponent implements OnInit {
     private shiftDataService: ShiftService,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.title = "Shift Details";
@@ -63,11 +62,11 @@ export class ShiftListComponent implements OnInit {
     this.router.navigateByUrl("shift");
   }
 
-  editShiftMaster(shift) {
+  editshiftMaster(shift) {
     this.router.navigate(["shiftedit", shift.SHIFT]);
   }
 
-  openPrompt(department: IShift) {
+  openPrompt(shift: IShift) {
     let yesButton = "Yes";
     let noButton = "No";
 
@@ -82,7 +81,7 @@ export class ShiftListComponent implements OnInit {
     dialogRef.componentInstance.dialogRef.afterClosed().subscribe(result => {
       if (result["event"] === yesButton) {
         console.log("Delete");
-        this.deleteShift(department["SHIFT"]);
+        this.deleteShift(shift["SHIFT"]);
       }
     });
   }

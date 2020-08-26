@@ -68,4 +68,21 @@ export class ValidationService {
         }
     }
 
+    static time24HourValidator(control: AbstractControl) {
+        let time = control.value;
+        if (time) {
+            let hours = Number(time.substr(0, time.indexOf(':')));
+            if (hours >= 24) {
+                return { 'isTime24HourNotValid': true }
+            }
+            let minutes = Number(time.substr(time.indexOf(':') + 1, time.length));
+            if (minutes >= 60) {
+                return { 'isTime24HourNotValid': true };
+            }
+            return null;
+        } else {
+            return { 'isTime24HourNotValid': true };
+        }
+    }
+
 }

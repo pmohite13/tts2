@@ -33,7 +33,7 @@
         <ng-container matColumnDef="startTime">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
           <td mat-cell *matCellDef="let shift">
-            {{ shift.STARTTIME | date: "H:mm" }}
+            {{ shift.STARTTIME | date: 'HH:mm':'UTC' }}
           </td>
         </ng-container>
 
@@ -41,7 +41,7 @@
         <ng-container matColumnDef="endTime">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
           <td mat-cell *matCellDef="let shift">
-            {{ shift.ENDTIME | date: "H:mm" }}
+            {{ shift.ENDTIME | date: 'HH:mm':'UTC' }}
           </td>
         </ng-container>
 
@@ -49,7 +49,7 @@
         <ng-container matColumnDef="lunchTime">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Lunch Time</th>
           <td mat-cell *matCellDef="let shift">
-            {{ shift.LUNCHTIME | date: "H:mm" }}
+            {{ shift.LUNCHTIME | date: 'HH:mm':'UTC'}}
           </td>
         </ng-container>
 
@@ -69,7 +69,7 @@
             Lunch EndTime
           </th>
           <td mat-cell *matCellDef="let shift">
-            {{ shift.LUNCHENDTIME | date: "H:mm" }}
+            {{ shift.LUNCHENDTIME | date: 'HH:mm':'UTC' }}
           </td>
         </ng-container>
 
@@ -94,14 +94,14 @@
         </ng-container>
 
         <!-- lunchDeduction Column -->
-        <ng-container matColumnDef="lunchDeduction">
+        <!-- <ng-container matColumnDef="lunchDeduction">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Lunch Deduction
           </th>
           <td mat-cell *matCellDef="let shift">
             {{ shift.LUNCHDEDUCTION }}
           </td>
-        </ng-container>
+        </ng-container> -->
 
         <!-- shiftPosition Column -->
         <ng-container matColumnDef="shiftPosition">

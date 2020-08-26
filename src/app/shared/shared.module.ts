@@ -9,6 +9,7 @@ import { FilterTextboxComponent } from "./filter-textbox/filter-textbox.componen
 import { PromptComponent } from "./dialogs/prompt/prompt.component";
 import { MaterialModule } from "./material.module";
 import { ValidationService } from "./validation.service";
+import { CommonService } from "./common.service";
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
@@ -30,6 +31,6 @@ import { ValidationService } from "./validation.service";
     PromptComponent
   ],
   entryComponents: [PromptComponent],
-  providers: [ValidationService]
+  providers: [ValidationService, CommonService]
 })
 export class SharedModule {}

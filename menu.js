@@ -6,45 +6,50 @@ const menuTemplate = [
     submenu: [
       {
         label: "Company",
-        accelerator: "Ctrl+N"
+        accelerator: "Ctrl+N",
       },
       { type: "separator" },
       {
         label: "Department",
-        accelerator: "Ctrl+D"
+        accelerator: "Ctrl+D",
       },
       { type: "separator" },
       {
         label: "Section",
-        accelerator: "Ctrl+E"
+        accelerator: "Ctrl+E",
       },
       { type: "separator" },
       {
         label: "Grade",
-        accelerator: "Ctrl+G"
+        accelerator: "Ctrl+G",
       },
       { type: "separator" },
       {
         label: "Category",
-        accelerator: "Ctrl+Y"
+        accelerator: "Ctrl+Y",
       },
       { type: "separator" },
       {
         label: "Holiday",
-        accelerator: "Ctrl+H"
+        accelerator: "Ctrl+H",
       },
       { type: "separator" },
       {
         label: "Shift",
-        accelerator: "Ctrl+F"
-      }
-    ]
+        accelerator: "Ctrl+F",
+      },
+      { type: "separator" },
+      {
+        label: "Employee",
+        accelerator: "Ctrl+P",
+      },
+    ],
   },
 
   {
     label: "Exit",
-    accelerator: "Ctrl+X"
-  }
+    accelerator: "Ctrl+X",
+  },
 ];
 
 menu = Menu.buildFromTemplate(menuTemplate);

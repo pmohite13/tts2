@@ -39,14 +39,25 @@
 //   }
 // };
 
+// var dbConfig = {
+//   user: "sa123",
+//   password: "$Uciny#12345",
+//   server: "DESKTOP-2948NIE",
+//   database: "bcsdb",
+//   port: 1433,
+//   options: {
+//     instanceName: "SQLEXPRESS",
+//   },
+// };
+
 var dbConfig = {
   user: "sa123",
-  password: "$Uciny#12345",
-  server: "DESKTOP-2948NIE",
+  password: "sa56789",
+  server: "DESKTOP-D8R42ST",
   database: "bcsdb",
   port: 1433,
   options: {
-    instanceName: "SQLEXPRESS",
+    instanceName: "PRANAY",
   },
 };
 
