@@ -11,6 +11,21 @@ import { CommonService } from "../../../../shared/common.service";
 export class EmployeeNewComponent implements OnInit {
   title: string;
   employeeFormGroup: any;
+  companies: string[] = [];
+  departments: string[] = [];
+  sections: string[] = [];
+  grades: string[] = [];
+  categories: string[] = [];
+  bloodGroups: string[] = [];
+  lateArrivalsAfterMaxLimit: string[] = [];
+  earlyDepaturesAfterMaxLimit: string[] = [];
+  shiftTypes: string[] = [];
+  shifts: string[] = [];
+  weekDays: string[] = [];
+  woTypes: string[] = [];
+  minDate: Date;
+  maxDate: Date;
+
   constructor(
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
@@ -21,6 +36,10 @@ export class EmployeeNewComponent implements OnInit {
   }
 
   ngOnInit() {
+    let currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear, 0, 1); //01st January of current year
+    this.maxDate = new Date(currentYear, 11, 31); //31st December of current year
+
     this.ngZone.run(() => {
       this.title = "Add New Employee";
     });
@@ -35,38 +54,38 @@ export class EmployeeNewComponent implements OnInit {
 
       /* Official Detail */
       active: [""],
-      cardNo: [""],
-      empName: [""],
-      guardianName: [""],
+      cardNo: ["", [Validators.required, Validators.maxLength(8)]],
+      empName: ["", [Validators.required, Validators.maxLength(25)]],
+      guardianName: ["", [Validators.maxLength(30)]],
       companyCode: [""],
       departmentCode: [""],
       cat: [""],
       divisionCode: [""],
       gradeCode: [""],
-      pfNo: [""],
+      pfNo: ["", [Validators.maxLength(15)]],
       esiNo: [""],
 
       /* Personal Detail */
-      dateOfBirth: [""],
-      dateOfJoin: [""],
+      dateOfBirth: ["", [Validators.required]],
+      dateOfJoin: ["", [Validators.required]],
       dateOfRetirement: [""],
       isMarried: [""],
       bloodGroup: [""],
-      qualification: [""],
-      experience: [""],
-      designation: [""],
+      qualification: ["", [Validators.maxLength(20)]],
+      experience: ["", [Validators.maxLength(20)]],
+      designation: ["", [Validators.maxLength(25)]],
       sex: [""],
-      bankAcc: [""],
-      email: [""],
-      bus: [""],
-      vehicleNo: [""],
-      address1: [""],
-      pincode1: [""],
-      telephone1: [""],
+      bankAcc: ["", [Validators.maxLength(20)]],
+      email: ["", [Validators.maxLength(30)]],
+      bus: ["", [Validators.maxLength(10)]],
+      vehicleNo: ["", [Validators.maxLength(15)]],
+      address1: ["", [Validators.maxLength(50)]],
+      pincode1: ["", [Validators.maxLength(8)]],
+      telephone1: ["", [Validators.maxLength(10)]],
       E_MAIL1: [""],
-      address2: [""],
-      pincode2: [""],
-      telephone2: [""],
+      address2: ["", [Validators.maxLength(50)]],
+      pincode2: ["", [Validators.maxLength(8)]],
+      telephone2: ["", [Validators.maxLength(10)]],
 
       /* Time office policy */
       permisLateArrival: [""],

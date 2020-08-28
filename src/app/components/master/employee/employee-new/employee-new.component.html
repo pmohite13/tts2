@@ -7,159 +7,199 @@
       <mat-tab-group animationDuration="0ms">
         <mat-tab label="Office Detail">
           <div class="row mt20">
-            <div class="col-md-12">
-              <!-- Shift Code -->
-              <mat-form-field appearance="outline">
-                <mat-label>Shift Code</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.shift"
-                  placeholder="Code"
-                />
-                <mat-error
-                  *ngIf="employeeFormGroup.controls.shift.hasError('required')"
-                >
-                  Shift code is
-                  <strong>required</strong>
-                </mat-error>
-                <mat-error
-                  *ngIf="employeeFormGroup.controls.shift.hasError('maxlength')"
-                >
-                  Shift code is
-                  <strong>3 char long max</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-
             <div class="col-md-6">
-              <!-- Start Time -->
+              <!-- Active -->
+              <mat-checkbox
+                [formControl]="employeeFormGroup.controls.active"
+                [disabled]="true"
+                >Active</mat-checkbox
+              >
+              <!--Card No.-->
               <mat-form-field appearance="outline">
-                <mat-label>Start Time</mat-label>
+                <mat-label>Card No.</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.startTime"
-                  placeholder="Start Time"
-                  [textMask]="{ mask: maskTime, guide: false }"
+                  [formControl]="employeeFormGroup.controls.cardNo"
                   type="text"
                 />
                 <mat-error
+                  *ngIf="employeeFormGroup.controls.cardNo.hasError('required')"
+                >
+                  Card number is
+                  <strong>required</strong>
+                </mat-error>
+                <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.startTime.hasError(
-                      'isTime24HourNotValid'
-                    )
+                    employeeFormGroup.controls.cardNo.hasError('maxlength')
                   "
                 >
-                  Time is not valid. Format is HH:MM
+                  Card number is
+                  <strong>8 char long max</strong>
                 </mat-error>
               </mat-form-field>
 
-              <!-- End Time -->
+              <!-- Emp. Name -->
               <mat-form-field appearance="outline">
-                <mat-label>End Time</mat-label>
+                <mat-label>Name</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.endTime"
-                  placeholder="End Time"
-                  [textMask]="{ mask: maskTime, guide: false }"
+                  [formControl]="employeeFormGroup.controls.empName"
                   (blur)="calculateShiftHours()"
                   type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.endTime.hasError(
-                      'isTime24HourNotValid'
-                    )
+                    employeeFormGroup.controls.empName.hasError('required')
                   "
                 >
-                  Time is not valid. Format is HH:MM
+                  Employee Name is
+                  <strong>required</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.empName.hasError('maxlength')
+                  "
+                >
+                  Employee Name is
+                  <strong>25 char long max</strong>
                 </mat-error>
               </mat-form-field>
 
-              <!-- Shift Duration -->
+              <!-- Guardian Name -->
               <mat-form-field appearance="outline">
-                <mat-label>Shift Hours</mat-label>
+                <mat-label>Guardian Name</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.shiftDuration"
-                  placeholder="Shift Hours"
-                  readonly
-                  [disabled]="true"
+                  [formControl]="employeeFormGroup.controls.guardianName"
+                  type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.shiftDuration.hasError(
-                      'isTime24HourNotValid'
+                    employeeFormGroup.controls.guardianName.hasError(
+                      'maxlength'
                     )
                   "
                 >
-                  Time is not valid. Format is HH:MM
+                  Guardian Name is
+                  <strong>30 char long max</strong>
                 </mat-error>
+              </mat-form-field>
+
+              <!--Employee Code.-->
+              <mat-form-field appearance="outline">
+                <mat-label>Employee Code</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.cardNo"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="employeeFormGroup.controls.cardNo.hasError('required')"
+                >
+                  Employee Code is
+                  <strong>required</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.cardNo.hasError('maxlength')
+                  "
+                >
+                  Employee Code is
+                  <strong>8 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!--Company -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select Company"
+                  [formControl]="employeeFormGroup.controls.companyCode"
+                >
+                  <mat-option *ngFor="let comp of companies" [value]="comp">
+                    {{ comp }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div class="col-md-6">
-              <!-- Lunch Start Time -->
+              <!--Department -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select Department"
+                  [formControl]="employeeFormGroup.controls.departmentCode"
+                >
+                  <mat-option *ngFor="let dept of departments" [value]="dept">
+                    {{ dept }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!--Category -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select Category"
+                  [formControl]="employeeFormGroup.controls.cat"
+                >
+                  <mat-option *ngFor="let cat of categories" [value]="cat">
+                    {{ cat }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!--Section/Division -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select Section"
+                  [formControl]="employeeFormGroup.controls.divisionCode"
+                >
+                  <mat-option *ngFor="let sec of sections" [value]="sec">
+                    {{ sec }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!--Grades -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select Grade"
+                  [formControl]="employeeFormGroup.controls.gradeCode"
+                >
+                  <mat-option *ngFor="let gd of grades" [value]="gd">
+                    {{ gd }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- PF No. -->
               <mat-form-field appearance="outline">
-                <mat-label>Lunch Start Time</mat-label>
+                <mat-label>PF No.</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.lunchTime"
-                  placeholder="Lunch Start Time"
+                  [formControl]="employeeFormGroup.controls.pfNo"
                   (blur)="lunchStartTimeChanged()"
-                  [textMask]="{ mask: maskTime, guide: false }"
                   type="text"
                 />
                 <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchTime.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
+                  *ngIf="employeeFormGroup.controls.pfNo.hasError('maxlength')"
                 >
-                  Time is not valid. Format is HH:MM
+                  PF No. is
+                  <strong>15 char long max</strong>
                 </mat-error>
               </mat-form-field>
 
-              <!-- Lunch Duration -->
+              <!-- ESI No. -->
               <mat-form-field appearance="outline">
-                <mat-label>Lunch Hours</mat-label>
+                <mat-label>ESI No.</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.lunchDuration"
-                  placeholder="Lunch Hours"
-                  [textMask]="{ mask: maskTime, guide: false }"
+                  [formControl]="employeeFormGroup.controls.esiNo"
                   (blur)="lunchHoursChanged()"
                 />
                 <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchDuration.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
+                  *ngIf="employeeFormGroup.controls.esiNo.hasError('maxlength')"
                 >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
-
-              <!--Lunch End Time -->
-              <mat-form-field appearance="outline">
-                <mat-label>Lunch End Time</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.lunchEndTime"
-                  placeholder="Lunch End Time"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                  readonly
-                  disabled
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchEndTime.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
+                  ESI No. is
+                  <strong>15 char long max</strong>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -168,124 +208,366 @@
         <mat-tab label="Personal Detail">
           <div class="row mt20">
             <div class="col-md-6">
-              <!-- Overtime Deduct After -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Deduct After</mat-label>
+              <!-- Date of Joining -->
+              <mat-form-field>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.otDeductAfter"
-                  placeholder="Overtime Deduct After"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
+                  [formControl]="employeeFormGroup.controls.dateOfJoin"
+                  [matDatepicker]="dateOfJoin"
+                  [min]="minDate"
+                  [max]="maxDate"
+                  placeholder="Date of Join*"
                 />
+
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dateOfJoin"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dateOfJoin></mat-datepicker>
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.otDeductAfter.hasError(
-                      'isTime24HourNotValid'
-                    )
+                    employeeFormGroup.controls.dateOfJoin.hasError('required')
                   "
                 >
-                  Time is not valid. Format is HH:MM
+                  Date of Joining is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
 
-              <!-- Overtime Start After -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Start After</mat-label>
+              <!-- Date of Birth -->
+              <mat-form-field>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.otStartAfter"
-                  placeholder="Overtime Start After"
-                  [textMask]="{ mask: maskTime, guide: false }"
+                  [formControl]="employeeFormGroup.controls.dateOfBirth"
+                  [matDatepicker]="dateOfBirth"
+                  [min]="minDate"
+                  [max]="maxDate"
+                  placeholder="Date of Birth*"
+                />
+
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dateOfBirth"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirth></mat-datepicker>
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.dateOfBirth.hasError('required')
+                  "
+                >
+                  Date of Birth is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Date of Retirement -->
+              <mat-form-field>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.dateOfRetirement"
+                  [matDatepicker]="dateOfRetirement"
+                  [min]="minDate"
+                  [max]="maxDate"
+                  placeholder="Date of Retirement*"
+                />
+
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="dateOfRetirement"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #dateOfRetirement></mat-datepicker>
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.dateOfRetirement.hasError(
+                      'required'
+                    )
+                  "
+                >
+                  Date of Retirement is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!--Married-->
+              <mat-checkbox
+                [formControl]="employeeFormGroup.controls.isMarried"
+                [disabled]="true"
+                >Married</mat-checkbox
+              >
+              <!--BloodGroup-->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Select BloodGroup"
+                  [formControl]="employeeFormGroup.controls.bloodGroup"
+                >
+                  <mat-option *ngFor="let bGrp of bloodGroups" [value]="bGrp">
+                    {{ bGrp }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Qualification -->
+              <mat-form-field appearance="outline">
+                <mat-label>Qualification</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.qualification"
                   type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.otStartAfter.hasError(
-                      'isTime24HourNotValid'
+                    employeeFormGroup.controls.qualification.hasError(
+                      'maxlength'
                     )
                   "
                 >
-                  Time is not valid. Format is HH:MM
+                  Qualification is
+                  <strong>20 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Experience -->
+              <mat-form-field appearance="outline">
+                <mat-label>Experience</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.experience"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.experience.hasError('maxlength')
+                  "
+                >
+                  Experience is
+                  <strong>20 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Designation -->
+              <mat-form-field appearance="outline">
+                <mat-label>Designation</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.designation"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.designation.hasError('maxlength')
+                  "
+                >
+                  Designation is
+                  <strong>25 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!--Gender-->
+              <div>
+                <label>Gender: </label>
+                <mat-radio-group [formControl]="employeeFormGroup.controls.sex">
+                  <mat-radio-button value="male">Male</mat-radio-button>
+                  <mat-radio-button value="female">Female</mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <!-- Bank A/c -->
+              <mat-form-field appearance="outline">
+                <mat-label>Bank A/c</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.bankAcc"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.bankAcc.hasError('maxlength')
+                  "
+                >
+                  Bank Account is
+                  <strong>20 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Email -->
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.email"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="employeeFormGroup.controls.email.hasError('maxlength')"
+                >
+                  Email is
+                  <strong>30 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Bus Route -->
+              <mat-form-field appearance="outline">
+                <mat-label>Bus Route</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.bus"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="employeeFormGroup.controls.bus.hasError('maxlength')"
+                >
+                  Bus route is
+                  <strong>10 char long max</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Vehicle No. -->
+              <mat-form-field appearance="outline">
+                <mat-label>Vehicle No.</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.vehicleNo"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.vehicleNo.hasError('maxlength')
+                  "
+                >
+                  Vehicle route is
+                  <strong>15 char long max</strong>
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-6">
-              <!-- Overtime Deducation -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Deducation</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.otDeductHrs"
-                  placeholder="Overtime Deducation"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.otDeductHrs.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
+              <fieldset>
+                <legend>Permanent</legend>
 
-              <!--Shift Position -->
-              <mat-form-field>
-                <mat-select
-                  placeholder="Shift Position"
-                  [formControl]="employeeFormGroup.controls.shiftPosition"
-                >
-                  <mat-option *ngFor="let pos of shiftPositions" [value]="pos">
-                    {{ pos }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                <!-- Permanent Address -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <textarea
+                    matInput
+                    [formControl]="employeeFormGroup.controls.address1"
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.address1.hasError('maxlength')
+                    "
+                  >
+                    Permanent address is
+                    <strong>50 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Permanent Pincode -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Pincode</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.pincode1"
+                  />
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.pincode1.hasError('maxlength')
+                    "
+                  >
+                    Pincode is
+                    <strong>8 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Permanent Phone -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.telephone1"
+                  />
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.telephone1.hasError(
+                        'maxlength'
+                      )
+                    "
+                  >
+                    Phone is
+                    <strong>10 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+              </fieldset>
+
+              <fieldset>
+                <legend>Temporary</legend>
+
+                <!-- Temporary Address -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <textarea
+                    matInput
+                    [formControl]="employeeFormGroup.controls.address2"
+                  ></textarea>
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.address2.hasError('maxlength')
+                    "
+                  >
+                    Temporary address is
+                    <strong>50 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Temporary Pincode -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Pincode</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.pincode2"
+                  />
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.pincode2.hasError('maxlength')
+                    "
+                  >
+                    Pincode is
+                    <strong>8 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Temporary Phone -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.telephone2"
+                  />
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.telephone2.hasError(
+                        'maxlength'
+                      )
+                    "
+                  >
+                    Permanent phone is
+                    <strong>10 char long max</strong>
+                  </mat-error>
+                </mat-form-field>
+              </fieldset>
             </div>
           </div>
         </mat-tab>
         <mat-tab label="Time Office Policy">
           <div class="row mt20">
-            <div class="col-md-12">
-              <!-- Shift Code -->
-              <mat-form-field appearance="outline">
-                <mat-label>Shift Code</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.shift"
-                  placeholder="Code"
-                />
-                <mat-error
-                  *ngIf="employeeFormGroup.controls.shift.hasError('required')"
-                >
-                  Shift code is
-                  <strong>required</strong>
-                </mat-error>
-                <mat-error
-                  *ngIf="employeeFormGroup.controls.shift.hasError('maxlength')"
-                >
-                  Shift code is
-                  <strong>3 char long max</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-
             <div class="col-md-6">
-              <!-- Start Time -->
+              <!-- Permissible Late Arrival -->
               <mat-form-field appearance="outline">
-                <mat-label>Start Time</mat-label>
+                <mat-label>Permissible Late Arrival</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.startTime"
-                  placeholder="Start Time"
+                  [formControl]="employeeFormGroup.controls.permisLateArrival"
                   [textMask]="{ mask: maskTime, guide: false }"
                   type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.startTime.hasError(
+                    employeeFormGroup.controls.permisLateArrival.hasError(
                       'isTime24HourNotValid'
                     )
                   "
@@ -294,20 +576,19 @@
                 </mat-error>
               </mat-form-field>
 
-              <!-- End Time -->
+              <!-- Maximum working hours in a day -->
               <mat-form-field appearance="outline">
-                <mat-label>End Time</mat-label>
+                <mat-label>Maximum working hours in a day</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.endTime"
-                  placeholder="End Time"
+                  [formControl]="employeeFormGroup.controls.permisEarlyDeprt"
                   [textMask]="{ mask: maskTime, guide: false }"
                   (blur)="calculateShiftHours()"
                   type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.endTime.hasError(
+                    employeeFormGroup.controls.permisEarlyDeprt.hasError(
                       'isTime24HourNotValid'
                     )
                   "
@@ -316,19 +597,19 @@
                 </mat-error>
               </mat-form-field>
 
-              <!-- Shift Duration -->
+              <!-- Maximum working hours in a day -->
               <mat-form-field appearance="outline">
-                <mat-label>Shift Hours</mat-label>
+                <mat-label>Maximum working hours in a day</mat-label>
                 <input
                   matInput
-                  [formControl]="employeeFormGroup.controls.shiftDuration"
-                  placeholder="Shift Hours"
-                  readonly
-                  [disabled]="true"
+                  [formControl]="employeeFormGroup.controls.maxDayMin"
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  (blur)="calculateShiftHours()"
+                  type="text"
                 />
                 <mat-error
                   *ngIf="
-                    employeeFormGroup.controls.shiftDuration.hasError(
+                    employeeFormGroup.controls.maxDayMin.hasError(
                       'isTime24HourNotValid'
                     )
                   "
@@ -336,154 +617,423 @@
                   Time is not valid. Format is HH:MM
                 </mat-error>
               </mat-form-field>
+
+              <!-- Night Shift Applicable(RTC) -->
+              <!-- <mat-checkbox
+               [formControl]="employeeFormGroup.controls.active"              
+               >Night Shift Applicable(RTC)</mat-checkbox
+             > -->
+              <!-- Consider Time Loss -->
+              <mat-checkbox
+                [formControl]="employeeFormGroup.controls.isTimeLossAllowed"
+                [disabled]="true"
+                >Consider Time Loss</mat-checkbox
+              >
+              <!-- Out Work Deduct -->
+              <mat-checkbox [formControl]="employeeFormGroup.controls.isOutWork"
+                >Out Work Deduct</mat-checkbox
+              >
+              <!-- Half Day Marking -->
+              <mat-checkbox [formControl]="employeeFormGroup.controls.isHalfDay"
+                >Half Day Marking</mat-checkbox
+              >
+              <!-- Short Leave Marking -->
+              <mat-checkbox [formControl]="employeeFormGroup.controls.isShort"
+                >Short Leave Marking</mat-checkbox
+              >
+
+              <!-- Present Marking Duration -->
+              <!-- <mat-form-field appearance="outline">
+                  <mat-label>Present Marking Duration</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.maxDayMin"
+                    [textMask]="{ mask: maskTime, guide: false }"
+                    (blur)="calculateShiftHours()"
+                    type="text"
+                  />
+                  <mat-error
+                    *ngIf="
+                      employeeFormGroup.controls.maxDayMin.hasError(
+                        'isTime24HourNotValid'
+                      )
+                    "
+                  >
+                    Time is not valid. Format is HH:MM
+                  </mat-error>
+                </mat-form-field> -->
+
+              <!-- Maximum working hours for half day -->
+              <mat-form-field appearance="outline">
+                <mat-label>Maximum working hours for half day</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.short"
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  (blur)="calculateShiftHours()"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.short.hasError(
+                      'isTime24HourNotValid'
+                    )
+                  "
+                >
+                  Time is not valid. Format is HH:MM
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Maximum absent hours for short day -->
+              <mat-form-field appearance="outline">
+                <mat-label>Maximum absent hours for short day</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.half"
+                  [textMask]="{ mask: maskTime, guide: false }"
+                  (blur)="calculateShiftHours()"
+                  type="text"
+                />
+                <mat-error
+                  *ngIf="
+                    employeeFormGroup.controls.half.hasError(
+                      'isTime24HourNotValid'
+                    )
+                  "
+                >
+                  Time is not valid. Format is HH:MM
+                </mat-error>
+              </mat-form-field>
+
+              <fieldset>
+                <legend>
+                  <!-- Late Arrival Marking -->
+                  <mat-checkbox
+                    [formControl]="employeeFormGroup.controls.lateArrvMark"
+                    >Late Arrival Marking</mat-checkbox
+                  >
+                </legend>
+                <!--No. of times late arrival allowed-->
+                <mat-form-field appearance="outline">
+                  <mat-label>No. of times late arrival allowed</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.noLateArrv"
+                    (blur)="lunchStartTimeChanged()"
+                    type="text"
+                  />
+                </mat-form-field>
+
+                <!--Consider Late Arrival after max limit-->
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Consider Late Arrival after max limit"
+                    [formControl]="employeeFormGroup.controls.lateArriv"
+                  >
+                    <mat-option
+                      *ngFor="let lateArr of lateArrivalsAfterMaxLimit"
+                      [value]="lateArr"
+                    >
+                      {{ lateArr }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </fieldset>
             </div>
             <div class="col-md-6">
-              <!-- Lunch Start Time -->
-              <mat-form-field appearance="outline">
-                <mat-label>Lunch Start Time</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.lunchTime"
-                  placeholder="Lunch Start Time"
-                  (blur)="lunchStartTimeChanged()"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchTime.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
+              <!-- Punches required in a Day -->
+              <fieldset>
+                <legend>Punches required in a Day</legend>
+                <div>
+                  <mat-radio-group
+                    [formControl]="employeeFormGroup.controls.isPunchAll"
+                  >
+                    <mat-radio-button value="np">No Punch</mat-radio-button>
+                    <mat-radio-button value="sp"
+                      >Single Punch Only</mat-radio-button
+                    >
+                    <mat-radio-button value="tp">Two Punches</mat-radio-button>
+                    <mat-radio-button value="fp">Four Punches</mat-radio-button>
+                    <mat-radio-button value="mp"
+                      >Multiple Punch</mat-radio-button
+                    >
+                  </mat-radio-group>
+                </div>
+              </fieldset>
 
-              <!-- Lunch Duration -->
-              <mat-form-field appearance="outline">
-                <mat-label>Lunch Hours</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.lunchDuration"
-                  placeholder="Lunch Hours"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  (blur)="lunchHoursChanged()"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchDuration.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
+              <!-- Single Punch Only -->
+              <!-- <fieldset>
+                <legend>Single Punch Only</legend>
+                <div>
+                  <mat-radio-group
+                    [formControl]="employeeFormGroup.controls.isPunchAll"
+                  >
+                    <mat-radio-button value="fot"
+                      >Fixed Out Time</mat-radio-button
+                    >
+                    <mat-radio-button value="ovr">Overwrite</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </fieldset> -->
 
-              <!--Lunch End Time -->
-              <mat-form-field appearance="outline">
-                <mat-label>Lunch End Time</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.lunchEndTime"
-                  placeholder="Lunch End Time"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                  readonly
-                  disabled
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.lunchEndTime.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
+              <fieldset>
+                <legend>
+                  <!-- Overtime Applicable -->
+                  <mat-checkbox [formControl]="employeeFormGroup.controls.isOT"
+                    >Overtime Applicable</mat-checkbox
+                  >
+                </legend>
+                <!--Overtime rate per hour-->
+                <mat-form-field appearance="outline">
+                  <mat-label>Overtime Rate Per Hour</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.otRate"
+                    (blur)="lunchStartTimeChanged()"
+                    type="text"
+                  />
+                </mat-form-field>
+              </fieldset>
+
+              <div>
+                <!-- Overstay Applicable -->
+                <mat-checkbox [formControl]="employeeFormGroup.controls.isOS"
+                  >Overstay Applicable</mat-checkbox
                 >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
+              </div>
+
+              <fieldset>
+                <legend>
+                  <!-- Early Departure Marking -->
+                  <mat-checkbox
+                    [formControl]="employeeFormGroup.controls.earlyDeptMark"
+                    >Early Departure Marking</mat-checkbox
+                  >
+                </legend>
+
+                <!--No. of times early departure allowed-->
+                <mat-form-field appearance="outline">
+                  <mat-label>No. of times early departure allowed</mat-label>
+                  <input
+                    matInput
+                    [formControl]="employeeFormGroup.controls.noEarlyDept"
+                    (blur)="lunchStartTimeChanged()"
+                    type="text"
+                  />
+                </mat-form-field>
+
+                <!--Consider Early Departure after max limit-->
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Consider Early Departure after max limit"
+                    [formControl]="employeeFormGroup.controls.earlyDept"
+                  >
+                    <mat-option
+                      *ngFor="let earDep of earlyDepaturesAfterMaxLimit"
+                      [value]="earDep"
+                    >
+                      {{ earDep }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </fieldset>
             </div>
           </div>
         </mat-tab>
         <mat-tab label="Shift/WO Policy">
           <div class="row mt20">
             <div class="col-md-6">
-              <!-- Overtime Deduct After -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Deduct After</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.otDeductAfter"
-                  placeholder="Overtime Deduct After"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.otDeductAfter.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
-
-              <!-- Overtime Start After -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Start After</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.otStartAfter"
-                  placeholder="Overtime Start After"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.otStartAfter.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <!-- Overtime Deducation -->
-              <mat-form-field appearance="outline">
-                <mat-label>Overtime Deducation</mat-label>
-                <input
-                  matInput
-                  [formControl]="employeeFormGroup.controls.otDeductHrs"
-                  placeholder="Overtime Deducation"
-                  [textMask]="{ mask: maskTime, guide: false }"
-                  type="text"
-                />
-                <mat-error
-                  *ngIf="
-                    employeeFormGroup.controls.otDeductHrs.hasError(
-                      'isTime24HourNotValid'
-                    )
-                  "
-                >
-                  Time is not valid. Format is HH:MM
-                </mat-error>
-              </mat-form-field>
-
-              <!--Shift Position -->
+              <!--Shift Type-->
               <mat-form-field>
                 <mat-select
-                  placeholder="Shift Position"
-                  [formControl]="employeeFormGroup.controls.shiftPosition"
+                  placeholder="Shift Type"
+                  [formControl]="employeeFormGroup.controls.shiftType"
                 >
-                  <mat-option *ngFor="let pos of shiftPositions" [value]="pos">
-                    {{ pos }}
+                  <mat-option *ngFor="let stype of shiftTypes" [value]="stype">
+                    {{ stype }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+
+              <!--Shift-->
+              <div class="col-md-6">
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Shift"
+                    [formControl]="employeeFormGroup.controls.shift"
+                  >
+                    <mat-option *ngFor="let s of shifts" [value]="s">
+                      {{ s }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!--Shift Pattern-->
+              <div class="col-md-6">
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Shift Pattern"
+                    [formControl]="employeeFormGroup.controls.shiftPattern"
+                    multiple
+                  >
+                    <mat-option *ngFor="let s of shifts" [value]="s">
+                      {{ s }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!--Remove Pattern-->
+              <!-- <div class="col-md-6">
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Remove Pattern"
+                    [formControl]="employeeFormGroup.controls.shiftPattern"
+                  >
+                    <mat-option *ngFor="let s of shifts" [value]="s">
+                      {{ s }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+
+              <fieldset>
+                <legend>
+                  <!-- Run Auto Shift -->
+                  <mat-checkbox
+                    [formControl]="employeeFormGroup.controls.isAutoShift"
+                    >Run Auto Shift</mat-checkbox
+                  >
+                </legend>
+
+                <!--Authorized Shifts-->
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Authorized Shifts"
+                    [formControl]="employeeFormGroup.controls.authShifts"
+                    multiple
+                  >
+                    <mat-option *ngFor="let s of shifts" [value]="s">
+                      {{ s }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </fieldset>
+
+              <!-- Shift Remaining Days -->
+              <mat-form-field appearance="outline">
+                <mat-label>Shift Remaining Days</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.shiftRemainDays"
+                  type="text"
+                />
+              </mat-form-field>
+              <!-- Shift Change After How Many Days -->
+              <mat-form-field appearance="outline">
+                <mat-label>Shift Change After How Many Days</mat-label>
+                <input
+                  matInput
+                  [formControl]="employeeFormGroup.controls.cDays"
+                  type="text"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <!--Weekly Off Details-->
+              <fieldset>
+                <legend>Weekly Off Details</legend>
+                <div>
+                  <!--First Weekly Off-->
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="First Weekly Off"
+                      [formControl]="employeeFormGroup.controls.firstOffDay"
+                    >
+                      <mat-option *ngFor="let day of weekDays" [value]="day">
+                        {{ day }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <!--Second Weekly Off-->
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Second Weekly Off"
+                      [formControl]="employeeFormGroup.controls.secondOffDay"
+                    >
+                      <mat-option *ngFor="let day of weekDays" [value]="day">
+                        {{ day }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <!--Second Wo Type-->
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Second Wo Type"
+                      [formControl]="employeeFormGroup.controls.secondOffType"
+                    >
+                      <mat-option *ngFor="let wType of woTypes" [value]="wType">
+                        {{ wType }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <!--Half Day Shift-->
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Half Day Shift"
+                      [formControl]="employeeFormGroup.controls.halfDayShift"
+                    >
+                      <mat-option *ngFor="let s of shifts" [value]="s">
+                        {{ s }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <!-- Second Weekly Off Days
+              <mat-checkbox
+              [formControl]="employeeFormGroup.controls.active"
+              [disabled]="true"
+              >Active</mat-checkbox
+            > -->
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>
+                  <!-- Allow Second Shift -->
+                  <mat-checkbox
+                    [formControl]="employeeFormGroup.controls.allwSecondShift"
+                    >Allow Second Shift</mat-checkbox
+                  >
+                </legend>
+                <!--Shift Day-->
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Shift Day"
+                    [formControl]="employeeFormGroup.controls.secondShiftDay"
+                  >
+                    <mat-option *ngFor="let day of weekDays" [value]="day">
+                      {{ day }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!--Shift-->
+                <mat-form-field>
+                  <mat-select
+                    placeholder="Shift"
+                    [formControl]="employeeFormGroup.controls.secondShift"
+                  >
+                    <mat-option *ngFor="let s of shifts" [value]="s">
+                      {{ s }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </fieldset>
             </div>
           </div>
         </mat-tab>
