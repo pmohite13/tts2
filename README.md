@@ -2,6 +2,6 @@
 
 # Introduction
 
-Time Tracking System
+Time Tracking System build using Electron, Angular
 
 
